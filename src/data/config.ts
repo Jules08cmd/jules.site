@@ -24,7 +24,7 @@ const config = {
     "Framer Motion",
   ],
   author: "Julian Kaufmann",
-  email: "julian.kaufmann@icloud.com",
+  email: "handwerk-sensoren.0a@icloud.com",
   site: "https://juliankaufmann.site",
 
   // for github stars button
