@@ -3,46 +3,60 @@ import { config } from "@/data/config";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const runtime = "nodejs";
 
-const Email = z.object({
-  fullName: z.string().min(2, "Full name is invalid!"),
-  email: z.string().email({ message: "Email is invalid!" }),
-  message: z.string().min(10, "Message is too short!"),
-});
-export async function POST(req) {
-  const apiKey = process.env.RESEND_API_KEY;
+type Payload = {
+  name?: string;
+  email?: string;
+  message?: string;
+};
 
-  if (!apiKey) {
-    return new Response(
-      JSON.stringify({ error: "RESEND_API_KEY fehlt in Vercel Environment Variables" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
-  }
+export async function POST(req: Request) {
+  try {
+    const apiKey = process.env.RESEND_API_KEY;
+    const toEmail = process.env.CONTACT_TO_EMAIL;
 
-  const resend = new Resend(apiKey);
-
-  // Ab hier dein bisheriger Code zum Senden
-  // z. B. const body = await req.json(); ...
-}
-
-    const { data: resendData, error: resendError } = await resend.emails.send({
-      from: "Porfolio <onboarding@resend.dev>",
-      to: [config.email],
-      subject: "Contact me from portfolio",
-      react: EmailTemplate({
-        fullName: zodData.fullName,
-        email: zodData.email,
-        message: zodData.message,
-      }),
-    });
-
-    if (resendError) {
-      return Response.json({ resendError }, { status: 500 });
+    if (!apiKey) {
+      return Response.json(
+        { error: "RESEND_API_KEY fehlt (Vercel Environment Variables)" },
+        { status: 500 }
+      );
     }
 
-    return Response.json(resendData);
+    if (!toEmail) {
+      return Response.json(
+        { error: "CONTACT_TO_EMAIL fehlt (Vercel Environment Variables)" },
+        { status: 500 }
+      );
+    }
+
+    const { name, email, message } = (await req.json()) as Payload;
+
+    if (!email || !message) {
+      return Response.json(
+        { error: "email und message sind Pflichtfelder" },
+        { status: 400 }
+      );
+    }
+
+    const resend = new Resend(apiKey);
+
+    const subject = `Kontaktformular: ${name ? name : "Unbekannt"}`;
+
+    const { data, error } = await resend.emails.send({
+      from: "Kontaktformular <onboarding@resend.dev>",
+      to: [toEmail],
+      replyTo: email,
+      subject,
+      text: `Name: ${name ?? "-"}\nEmail: ${email}\n\nNachricht:\n${message}`,
+    });
+
+    if (error) {
+      return Response.json({ error }, { status: 500 });
+    }
+
+    return Response.json({ ok: true, data });
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    return Response.json({ error: String(error) }, { status: 500 });
   }
 }
