@@ -34,9 +34,10 @@ const config = {
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
   },
-  social: {
-    instagram: "https://www.instagram.com/juliank.ig",
-    github: "https://github.com/jules08cmd",
+social: {
+    instagram: "https://instagram.com/juliank.ig",
+    github: "https://github.com/Jules08cmd",
+    twitter: "https://x.com/kauf9955"
   },
 };
 export { config };
