@@ -183,4 +183,4 @@ If you'd like to contribute or suggest improvements, feel free to open an issue 
 
 This project is open source and available under the [MIT License](LICENSE).
 
-If you use this portfolio, a credit or link back to the [original repo](https://github.com/Naresh-Khatri/3d-portfolio) would be much appreciated ❤️
+If you use this portfolio, a credit or link back to the [original repo](https://github.com/Jules08cmd/jules.site) would be much appreciated ❤️
