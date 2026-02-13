@@ -1,12 +1,12 @@
 const config = {
-  title: "Naresh Khatri | Full-Stack Developer",
+  title: "Julian Kaufmann | Full-Stack Developer",
   description: {
-    long: "Explore the portfolio of Naresh, a full-stack developer and creative technologist specializing in interactive web experiences, 3D animations, and innovative projects. Discover my latest work, including Coding Ducks, The Booking Desk, Ghostchat, and more. Let's build something amazing together!",
+    long: "Explore the portfolio of Julian, a full-stack developer and creative technologist specializing in interactive web experiences, 3D animations, and innovative projects. Discover my latest work, including Coding Ducks, The Booking Desk, Ghostchat, and more. Let's build something amazing together!",
     short:
-      "Discover the portfolio of Naresh, a full-stack developer creating interactive web experiences and innovative projects.",
+      "Discover the portfolio of Julian, a full-stack developer creating interactive web experiences and innovative projects.",
   },
   keywords: [
-    "Naresh",
+    "Julian",
     "portfolio",
     "full-stack developer",
     "creative technologist",
@@ -23,23 +23,20 @@ const config = {
     "Spline",
     "Framer Motion",
   ],
-  author: "Naresh Khatri",
-  email: "naresh.khatri2345@gmail.com",
-  site: "https://nareshkhatri.site",
+  author: "Julian Kaufmann",
+  email: "julian.kaufmann@icloud.com",
+  site: "https://juliankaufmann.site",
 
   // for github stars button
-  githubUsername: "naresh-khatri",
+  githubUsername: "Jules08cmd",
   githubRepo: "3d-portfolio",
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
   },
   social: {
-    twitter: "https://x.com/nothotchaddi",
-    linkedin: "https://www.linkedin.com/in/naresh-khatri/",
-    instagram: "https://www.instagram.com/hotchaddi",
-    facebook: "https://www.facebook.com/HotChaddi/",
-    github: "https://github.com/Naresh-Khatri",
+    instagram: "https://www.instagram.com/juliank.ig",
+    github: "https://github.com/jules08cmd",
   },
 };
 export { config };
