@@ -37,8 +37,8 @@ const config = {
 social: {
     instagram: "https://instagram.com/juliank.ig",
     github: "https://github.com/Jules08cmd",
-    twitter: "https://x.com/kauf9955"
-    linkedin: "https://www.linkedin.com/in/julian-k-b228573a4"
+    twitter: "https://x.com/kauf9955",
+    linkedin: "https://www.linkedin.com/in/julian-k-b228573a4",
   },
 };
 export { config };
