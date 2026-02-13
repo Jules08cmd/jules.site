@@ -10,17 +10,21 @@ const Email = z.object({
   email: z.string().email({ message: "Email is invalid!" }),
   message: z.string().min(10, "Message is too short!"),
 });
-export async function POST(req: Request) {
-  try {
-    const body = await req.json();
-    console.log(body);
-    const {
-      success: zodSuccess,
-      data: zodData,
-      error: zodError,
-    } = Email.safeParse(body);
-    if (!zodSuccess)
-      return Response.json({ error: zodError?.message }, { status: 400 });
+export async function POST(req) {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    return new Response(
+      JSON.stringify({ error: "RESEND_API_KEY fehlt in Vercel Environment Variables" }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
+  const resend = new Resend(apiKey);
+
+  // Ab hier dein bisheriger Code zum Senden
+  // z. B. const body = await req.json(); ...
+}
 
     const { data: resendData, error: resendError } = await resend.emails.send({
       from: "Porfolio <onboarding@resend.dev>",
